@@ -1,0 +1,38 @@
+CREATE TABLE Employee(
+  EmployeeID number NOT NULL,
+  Name varchar2(50) NOT NULL,
+  Salary number NOT NULL
+);  
+
+/*——————————————————————————————————————*/
+
+CREATE OR REPLACE TRIGGER display_salary_changes
+AFTER INSERT ON Employee
+DECLARE 
+    emp_count NUMBER;
+BEGIN
+    SELECT count(EmployeeID) INTO emp_count FROM Employee;
+    UPDATE Employee SET Salary = Salary + (Salary/10) WHERE EmployeeID = emp_count;
+END;
+
+/*——————————————————————————————————————*/
+
+// triggering the trigger
+
+/*——————————————————————————————————————*/
+
+INSERT INTO Employee VALUES (1, 'Amanda', 25000);
+
+/*——————————————————————————————————————*/
+
+INSERT INTO Employee VALUES (2, 'John', 10000);
+
+/*——————————————————————————————————————*/
+
+INSERT INTO Employee VALUES (3, 'Alice', 50000);
+
+/*——————————————————————————————————————*/
+
+SELECT * FROM Employee;
+
+/*——————————————————————————————————————*/
