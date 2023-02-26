@@ -1,0 +1,37 @@
+CREATE TABLE department(
+dep_id VARCHAR2(50),
+employee_id VARCHAR2(50)
+);
+
+/*——————————————————————————————————————*/
+
+INSERT INTO department(dep_id, employee_id) VALUES ('D1', 'E2');
+INSERT INTO department(dep_id, employee_id) VALUES ('D3', 'E1');
+INSERT INTO department(dep_id, employee_id) VALUES ('D1', 'E2');
+INSERT INTO department(dep_id, employee_id) VALUES ('D2', 'E3');
+
+/*——————————————————————————————————————*/
+
+SELECT * FROM department;
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    DID varchar2(50);
+    emp_count number;
+    capacity number;
+    vacancy number;
+BEGIN
+    DID := :DID;
+    capacity := :capacity;
+
+    SELECT COUNT(dep_id)  INTO emp_count FROM department WHERE (dep_id = DID);
+    dbms_output.put_line('Number of Employees : ' || emp_count);
+
+    vacancy := capacity-emp_count;
+
+    dbms_output.put_line('Number of Vacancies : ' || vacancy);
+    RETURN;
+END;
+
+/*——————————————————————————————————————*/
