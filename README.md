@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/github/repo-size/DeepthiTabithaBennet/C_Arrays?color=blue&style=for-the-badge" height="30">
+<img src="https://img.shields.io/github/repo-size/DeepthiTabithaBennet/DBMS?color=blue&style=for-the-badge" height="30">
 
 ## DBMS
 
