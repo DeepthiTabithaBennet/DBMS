@@ -1,0 +1,43 @@
+CREATE TABLE employee(
+    dep_id VARCHAR2(50),
+    dep_name VARCHAR2(50),
+    employee_id NUMBER,
+    jobname VARCHAR2(50),
+    firstname VARCHAR2(50),
+    lastname VARCHAR2(50),
+    salary NUMBER
+);
+
+/*——————————————————————————————————————*/
+
+INSERT ALL
+    INTO employee VALUES ('D1', 'CSE', 1, 'clerk', 'Alice', 'Brown', 25000)
+    INTO employee VALUES ('D2', 'DS', 2, 'professor', 'Ashley', 'Johnson', 15000)
+    INTO employee VALUES ('D1', 'CSE', 3, 'professor', 'Holly', 'Simpson', 75000)
+    INTO employee VALUES ('D1', 'CSE', 4, 'clerk', 'John', 'Fallon', 9000)
+    INTO employee VALUES ('D3', 'IT', 5, 'clerk', 'Peter', 'Parker', 20000)
+SELECT * FROM dual;
+
+/*——————————————————————————————————————*/
+
+SELECT * FROM employee;
+
+/*——————————————————————————————————————*/
+
+CREATE OR REPLACE PROCEDURE UpdateSalary(DEPTID VARCHAR2, SAL NUMBER) IS   
+BEGIN
+    UPDATE employee SET Salary = Salary + SAL WHERE dep_id = DEPTID;
+END; 
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    DEPTID VARCHAR2(50);
+    SAL NUMBER;
+BEGIN 
+    DEPTID := :DEPTID;
+    SAL := :SAL;
+    UpdateSalary(DEPTID, SAL);
+END;
+
+/*——————————————————————————————————————*/
