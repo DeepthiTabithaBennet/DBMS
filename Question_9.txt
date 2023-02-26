@@ -1,0 +1,40 @@
+CREATE TABLE Employee(
+  EmployeeID number NOT NULL,
+  Name varchar2(50) NOT NULL,
+  Salary number NOT NULL
+); 
+
+/*——————————————————————————————————————*/
+
+INSERT ALL
+    INTO Employee VALUES (1, 'Amanda', 25000)
+    INTO Employee VALUES (2, 'John', 10000)
+    INTO Employee VALUES (3, 'Alice', 50000)
+SELECT * FROM dual;
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    sal_achieve NUMBER; 
+    target_qty  NUMBER;
+    emp_id NUMBER;
+    PROCEDURE test1 (sal_achieve  NUMBER, target_qty  NUMBER, emp_id NUMBER)
+    IS
+        incentive NUMBER := 0;
+        updated VARCHAR2(3) := 'No';
+    BEGIN
+        IF sal_achieve >= (target_qty) THEN incentive := (sal_achieve * 5 / 100);
+        UPDATE Employee SET salary = salary + incentive  WHERE EmployeeID = emp_id;
+        updated := 'Yes';
+        END IF;
+        DBMS_OUTPUT.PUT_LINE ('Table updated?  ' || updated || ', ' || 'incentive = ' || incentive || '.');
+    END test1;
+    
+/*——————————————————————————————————————*/
+
+BEGIN
+    emp_id := :emp_id;
+    sal_achieve := :sal_achieve;
+    target_qty := :target_qty;
+    test1(sal_achieve, target_qty, emp_id);
+END;
