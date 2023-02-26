@@ -1,0 +1,318 @@
+CREATE TABLE DeepthiPlayer(
+  PlayerID varchar2(50) NOT NULL,
+  Name varchar2(50) NOT NULL,
+  Team varchar2(50) NOT NULL,  
+  Age number NOT NULL,  
+  BattingAverage number NOT NULL,
+  TotalRuns number NOT NULL,
+  StrikeRate number NOT NULL,
+
+  CONSTRAINT PlayerID_pk PRIMARY KEY (PlayerID),
+  CONSTRAINT PlayerAge_chk CHECK (Age > 0)
+);
+
+/*-----------------------------------------------------------------------------*/
+
+CREATE TABLE DeepthiCoach(
+  CoachID varchar2(50) NOT NULL,
+  Name varchar2(50) NOT NULL,
+  Age number NOT NULL,  
+  YearsOfExperience number NOT NULL,  
+  MobileNum varchar2(50) NOT NULL,
+
+  CONSTRAINT CoachID_pk PRIMARY KEY (CoachID),
+  CONSTRAINT CoachAge_chk CHECK (Age > 0),
+  CONSTRAINT MobileNum_uni UNIQUE (MobileNum)
+);  
+
+/*-----------------------------------------------------------------------------*/
+
+CREATE TABLE DeepthiTeamDetails(
+  TeamID varchar2(50) NOT NULL,
+  NumOfMatchesPlayed number NOT NULL,
+  NumOfMatchesWon number NOT NULL,
+  NumOfMatchesLost number NOT NULL,
+  TeamCaptain varchar2(50) NOT NULL,
+
+  CONSTRAINT TeamID_pk PRIMARY KEY (TeamID)
+);
+
+/*-----------------------------------------------------------------------------*/
+
+CREATE TABLE DeepthiTeamMatches(
+  MatchID varchar2(50) NOT NULL,
+  WinOrLoss varchar2(50) NOT NULL,
+  MatchLocation varchar2(50) NOT NULL,
+  MatchDate varchar2(50) NOT NULL,
+  OpposingTeam varchar2(50) NOT NULL,  
+
+  CONSTRAINT MatchID_pk PRIMARY KEY (MatchID)
+);  
+/*-----------------------------------------------------------------------------*/
+
+CREATE TABLE DeepthiKit(
+  KitID varchar2(50) NOT NULL,
+  BatType varchar2(50) NOT NULL,
+  BallType varchar2(50) NOT NULL,  
+  NumOfKits number NOT NULL,  
+  NumOfBats number NOT NULL,
+  NumOfBalls number NOT NULL,
+
+  PlayerID varchar2(50) NOT NULL,
+
+
+  CONSTRAINT KitID_pk PRIMARY KEY (KitID),
+  CONSTRAINT fk_Player FOREIGN KEY (PlayerID)
+    REFERENCES DeepthiPlayer(PlayerID)
+);
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+INSERT All
+    INTO DeepthiPlayer (PlayerID, Name, Team, Age, BattingAverage, TotalRuns, StrikeRate)  VALUES ('7', 'Dhoni', 'CSK', 40, 50.6, 10773, 87.56)
+    INTO DeepthiPlayer (PlayerID, Name, Team, Age, BattingAverage, TotalRuns, StrikeRate)  VALUES ('31', 'Gaikwad', 'CSK', 25, 45.7, 5045, 67.48)
+    INTO DeepthiPlayer (PlayerID, Name, Team, Age, BattingAverage, TotalRuns, StrikeRate)  VALUES ('8', 'Jadeja', 'CSK', 33, 48.94, 7980, 79.42)
+    INTO DeepthiPlayer (PlayerID, Name, Team, Age, BattingAverage, TotalRuns, StrikeRate)  VALUES ('47', 'Bravo', 'CSK', 38, 39.65, 2994, 43.96)
+    INTO DeepthiPlayer (PlayerID, Name, Team, Age, BattingAverage, TotalRuns, StrikeRate)  VALUES ('5', 'Raydu', 'CSK', 36, 38.74, 5683, 42.34)
+SELECT * FROM dual;
+
+/*-----------------------------------------------------------------------------*/
+
+INSERT INTO DeepthiCoach (CoachID, Name, Age, YearsOfExperience, MobileNum)  
+VALUES  ('1', 'Stephen Fleming', 48, 12, '123456789');
+
+/*-----------------------------------------------------------------------------*/
+
+INSERT INTO DeepthiTeamDetails (TeamID, NumOfMatchesPlayed, NumOfMatchesWon, NumOfMatchesLost, TeamCaptain)  
+VALUES  ('1', 196, 117, 79, 'Dhoni');
+
+/*-----------------------------------------------------------------------------*/
+
+INSERT All
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('1', 'Win', 'Dubai', '06/01/2005', 'KKR')
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('2', 'Win', 'NewYork', '16/12/2001', 'MI')
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('3', 'Lose', 'Paris', '08/05/2014', 'KKR')
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('4', 'Win', 'Dubai', '23/10/2009', 'KKR')
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('5', 'Win', 'Delhi', '28/03/2020', 'DC')
+    INTO DeepthiTeamMatches (MatchID, WinOrLoss , MatchLocation, MatchDate, OpposingTeam)  VALUES ('6', 'Lose', 'London', '01/01/2003', 'MI')
+SELECT * FROM dual;
+
+/*-----------------------------------------------------------------------------*/
+
+INSERT ALL
+    INTO DeepthiKit (KitID, BatType, BallType, NumOfKits, NumOfBats, NumOfBalls, PlayerID)  VALUES ('1', 'Willow', 'Cork', 20, 15, 18, '7')
+    INTO DeepthiKit (KitID, BatType, BallType, NumOfKits, NumOfBats, NumOfBalls, PlayerID)  VALUES ('2', 'Training', 'Kookaburra', 2, 7, 5, '5')
+    INTO DeepthiKit (KitID, BatType, BallType, NumOfKits, NumOfBats, NumOfBalls, PlayerID)  VALUES ('3', 'Soft', 'Red Leather', 18, 5, 4, '7')
+    INTO DeepthiKit (KitID, BatType, BallType, NumOfKits, NumOfBats, NumOfBalls, PlayerID)  VALUES ('4', 'Willow', 'Pink Leather', 7, 3, 48, '7')
+    INTO DeepthiKit (KitID, BatType, BallType, NumOfKits, NumOfBats, NumOfBalls, PlayerID)  VALUES ('5', 'Willow', 'Kookaburra', 17, 23, 20, '8')
+SELECT * FROM dual;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT * FROM DeepthiPlayer;  
+
+SELECT * FROM DeepthiCoach;  
+
+SELECT * FROM DeepthiTeamDetails;  
+
+SELECT * FROM DeepthiTeamMatches;
+
+SELECT * FROM DeepthiKit;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT * FROM DeepthiPlayer WHERE Team = 'CSK' AND Age = 40
+
+SELECT * FROM DeepthiPlayer WHERE Age <= 35 OR TotalRuns >= 10000
+
+SELECT * FROM DeepthiPlayer WHERE Name LIKE '_a%'
+
+SELECT * FROM DeepthiPlayer WHERE Name NOT LIKE '_a%'
+
+SELECT * FROM DeepthiPlayer WHERE StrikeRate BETWEEN 50 AND 90
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT * FROM DeepthiPlayer ORDER BY Name;
+
+SELECT COUNT(WinOrLoss), OpposingTeam
+FROM DeepthiTeamMatches
+GROUP BY OpposingTeam
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT COUNT(WinOrLoss) FROM DeepthiTeamMatches;
+
+SELECT MIN(TotalRuns) FROM DeepthiPlayer;
+
+SELECT MAX(TotalRuns) FROM DeepthiPlayer;
+
+SELECT AVG(Age) FROM DeepthiPlayer;
+
+SELECT SUM(TotalRuns) FROM DeepthiPlayer;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT * FROM DeepthiPlayer WHERE CEIL(BattingAverage) > 45;
+
+SELECT * FROM DeepthiPlayer WHERE FLOOR(BattingAverage) > 45;
+
+SELECT LOG(2, TotalRuns) FROM DeepthiPlayer;
+
+SELECT EXP(BattingAverage) FROM DeepthiPlayer;
+
+SELECT * FROM DeepthiPlayer WHERE MOD(PlayerID, 7) = 0;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT * FROM DeepthiPlayer WHERE LOWER(Name) = 'dhoni';
+
+SELECT * FROM DeepthiPlayer WHERE UPPER(Name) = 'DHONI';
+
+SELECT * FROM DeepthiPlayer WHERE LENGTH(Name) = 5;
+
+SELECT * FROM DeepthiPlayer WHERE Name LIKE '_a%'
+
+SELECT * FROM DeepthiPlayer WHERE Name LIKE 'D%'
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+DROP TABLE DeepthiKit;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+DECLARE    
+TOTRUNS DeepthiPlayer.TotalRuns % TYPE;  
+PID DeepthiPlayer.PlayerID % TYPE;  
+BEGIN  
+PID := :PID;  
+ 
+Select TotalRuns into TOTRUNS from DeepthiPlayer where PlayerID = PID;  
+dbms_output.put_line('Total Runs of ' || PID || ' is = ' || TOTRUNS);    
+END;  
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+// Inner Join
+SELECT * FROM DeepthiPlayer  
+INNER JOIN DeepthiKit  
+ON DeepthiPlayer.PlayerID = DeepthiKit.PlayerID;  
+
+// Full Outer Join
+SELECT  * FROM DeepthiPlayer  
+FULL OUTER JOIN DeepthiKit
+ON DeepthiPlayer.PlayerID = DeepthiKit.PlayerID;
+
+// Left Outer Join
+SELECT  * FROM DeepthiPlayer  
+LEFT OUTER JOIN DeepthiKit
+ON DeepthiPlayer.PlayerID = DeepthiKit.PlayerID;  
+
+// Right Outer Join
+SELECT  * FROM DeepthiPlayer  
+RIGHT OUTER JOIN DeepthiKit
+ON DeepthiPlayer.PlayerID = DeepthiKit.PlayerID;  
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+DECLARE
+   PID DeepthiPlayer.PlayerID % TYPE;
+   PNAME DeepthiPlayer.Name % TYPE;
+   TOTRUNS DeepthiPlayer.TotalRuns % TYPE;
+   CURSOR c_player is
+      SELECT PlayerID, Name, TotalRuns FROM DeepthiPlayer;
+BEGIN
+   OPEN c_player;
+   LOOP
+   FETCH c_player into PID, PNAME, TOTRUNS;
+      EXIT WHEN c_player%notfound;
+      dbms_output.put_line(PID || ' ' || PNAME || ' ' || TOTRUNS);
+   END LOOP;
+   CLOSE c_player;
+END;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+CREATE OR REPLACE TRIGGER display_totalruns_changes
+BEFORE DELETE OR INSERT OR UPDATE ON DeepthiPlayer
+FOR EACH ROW
+WHEN (NEW.PlayerID > 0)
+DECLARE
+   run_diff number;
+BEGIN
+   run_diff := :NEW.TotalRuns  - :OLD.TotalRuns;
+   dbms_output.put_line('Old Total Runs: ' || :OLD.TotalRuns);
+   dbms_output.put_line('New Total Runs: ' || :NEW.TotalRuns);
+   dbms_output.put_line('Salary difference: ' || run_diff);
+END;
+
+// triggering the trigger
+UPDATE DeepthiPlayer
+SET TotalRuns = TotalRuns + 500
+WHERE PlayerID = 7;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+DECLARE
+    TYPE t_name_type IS VARRAY(2)
+        OF VARCHAR2(20) NOT NULL;
+    t_names t_name_type  := t_name_type('Dhoni', 'Jadeja');
+    t_enames t_name_type := t_name_type();
+BEGIN
+    -- initialize to an empty array
+    dbms_output.put_line('No of elements in t_enames ' || t_enames.COUNT);
+   
+    -- initialize to an array of a elements
+    dbms_output.put_line('No of elements in t_names ' || t_names.COUNT);
+
+END;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+DECLARE
+    CURSOR c_player IS 
+        SELECT name 
+        FROM DeepthiPlayer
+        ORDER BY name;
+
+    TYPE t_player_name_type 
+        IS TABLE OF DeepthiPlayer.name%TYPE;
+    
+    -- declare and initialize a nested table variable
+    t_player_names t_player_name_type := t_player_name_type(); 
+    
+BEGIN
+    -- populate player names from a cursor
+    FOR r_player IN c_player 
+    LOOP
+        t_player_names.EXTEND;
+        t_player_names(t_player_names.LAST) := r_player.name;
+    END LOOP;
+    
+    -- display player names
+    FOR i IN 1..t_player_names.COUNT 
+    LOOP
+        dbms_output.put_line(t_player_names(i));
+    END LOOP;
+END;
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+SELECT PlayerID, NumOfKits, ROUND((SELECT AVG(StrikeRate) FROM DeepthiPlayer WHERE DeepthiPlayer.PlayerID = DeepthiKit.PlayerID)) AvgStrikeRate
+    FROM DeepthiKit ORDER BY PlayerID;
+    
