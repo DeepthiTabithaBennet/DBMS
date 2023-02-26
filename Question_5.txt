@@ -1,0 +1,40 @@
+CREATE TABLE sales(
+id VARCHAR2(50),
+unit_price number,
+quantity number,
+year varchar2(50)
+);
+
+/*——————————————————————————————————————*/
+
+INSERT ALL
+    INTO sales VALUES (1, 200, 5, 2020)
+    INTO sales VALUES (2, 250, 25, 2021)
+    INTO sales VALUES (3, 300, 10, 2022)
+    INTO sales VALUES (4, 500, 90, 2020)
+    INTO sales VALUES (5, 1000, 2, 2022)
+SELECT * FROM dual;
+
+/*——————————————————————————————————————*/
+
+SELECT sum(unit_price), year FROM sales GROUP BY year;
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    sale_year varchar2(50);
+    PROCEDURE Sum_Of_Sales(sale_year varchar2)
+        IS
+            sale_sum number;
+        BEGIN
+            SELECT sum(unit_price) INTO sale_sum FROM sales WHERE year = sale_year;
+            dbms_output.put_line('year : ' || sale_year);
+            dbms_output.put_line('sale : ' || sale_sum);
+    END Sum_Of_Sales;
+
+BEGIN
+    sale_year := :sale_year;
+    Sum_Of_Sales(sale_year);
+END;
+
+/*——————————————————————————————————————*/
