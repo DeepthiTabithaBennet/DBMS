@@ -1,0 +1,26 @@
+DECLARE
+    i NUMBER(3);
+    j NUMBER(3);
+    end_number NUMBER;
+BEGIN
+    end_number := :end_number;
+    dbms_output.Put_line('The prime numbers are:');
+    dbms_output.new_line;
+
+    i := 2;
+    LOOP
+        j := 2;
+        LOOP
+            EXIT WHEN( ( MOD(i, j) = 0 ) OR ( j = i ) );
+            j := j + 1;
+        END LOOP;
+        IF( j = i )THEN
+          dbms_output.Put(i||'   ');   
+        END IF;
+        i := i + 1;
+        exit WHEN i = end_number;
+    END LOOP;
+dbms_output.new_line;
+END;
+
+/*——————————————————————————————————————*/
