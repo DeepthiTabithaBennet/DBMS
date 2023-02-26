@@ -1,0 +1,41 @@
+CREATE TABLE department(
+    dep_id VARCHAR2(50),
+    dep_name VARCHAR2(50),
+    employee_id NUMBER,
+    jobname VARCHAR2(50),
+    firstname VARCHAR2(50),
+    lastname VARCHAR2(50),
+    salary NUMBER
+);
+
+/*——————————————————————————————————————*/
+
+INSERT ALL
+    INTO department VALUES ('D1', 'CSE', 1, 'clerk', 'Alice', 'Brown', 25000)
+    INTO department VALUES ('D2', 'DS', 2, 'professor', 'Ashley', 'Johnson', 15000)
+    INTO department VALUES ('D1', 'CSE', 3, 'professor', 'Holly', 'Simpson', 75000)
+    INTO department VALUES ('D1', 'CSE', 4, 'clerk', 'John', 'Fallon', 9000)
+    INTO department VALUES ('D3', 'IT', 5, 'clerk', 'Peter', 'Parker', 20000)
+SELECT * FROM dual;
+
+/*——————————————————————————————————————*/
+
+SELECT * FROM department;
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    CURSOR emp_cur_detail IS
+        SELECT dep_id, dep_name, employee_id, jobname, firstname, lastname, salary
+            FROM department WHERE  jobname = 'clerk' AND salary > 10000;
+BEGIN
+    FOR emp_rec IN emp_cur_detail LOOP
+        dbms_output.put_line('Name: ' || emp_rec.firstname || ' ' || emp_rec.lastname || Chr(9)
+                             || 'Department Name: ' || emp_rec.dep_name || Chr(9)
+                             || 'Department ID: ' || emp_rec.dep_id ||Chr(9)
+                             || 'Job Name: ' || emp_rec.jobname || Chr(9)
+                             || 'Salary: ' || emp_rec.salary);
+    END LOOP;
+END; 
+
+/*——————————————————————————————————————*/
