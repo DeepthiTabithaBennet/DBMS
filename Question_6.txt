@@ -1,0 +1,42 @@
+CREATE TABLE department(
+dep_id VARCHAR2(50),
+employee_id NUMBER,
+employee_name VARCHAR2(50),
+salary NUMBER
+);
+
+/*——————————————————————————————————————*/
+
+INSERT ALL
+    INTO department VALUES ('D1', 147, 'Alice', 2500)
+    INTO department VALUES ('D2', 148, 'Ashley', 1500)
+    INTO department VALUES ('D1', 149, 'Holly', 7500)
+    INTO department VALUES ('D1', 150, 'John', 1000)
+    INTO department VALUES ('D3', 151, 'Peter', 2000)
+SELECT * FROM dual;
+
+/*——————————————————————————————————————*/
+
+DECLARE
+    EID NUMBER;
+    DID VARCHAR2(50);
+    ENAME VARCHAR2(50);
+    SAL NUMBER;
+
+    PROCEDURE details(EID varchar2)
+        IS
+            sale_sum number;
+        BEGIN
+            SELECT dep_id, employee_name, salary INTO DID, ENAME, SAL FROM department WHERE employee_ID = EID;
+            dbms_output.put_line('Employee ID : ' || EID);
+            dbms_output.put_line('Employee Name : ' || ENAME);
+            dbms_output.put_line('Department ID : ' || DID);
+            dbms_output.put_line('Salary : ' || SAL);
+    END details;
+
+BEGIN
+    EID := :EID;
+    details(EID);
+END;
+
+/*——————————————————————————————————————*/
