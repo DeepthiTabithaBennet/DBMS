@@ -6,7 +6,7 @@
 
 ### List of Programs :
 * Main Program - [Cricket Match Management System](https://github.com/DeepthiTabithaBennet/DBMS/blob/main/CricketMatches.txt)
-* Sample Questions and Explanations - [Click Here](https://drive.google.com/file/d/1BOwpXBp0T6JNUFifQUMxnJgLP6eCMqON/view?usp=drivesdk)
+* Sample Questions and Explanations - [Click Here](https://drive.google.com/file/d/1FxbvwRoYwSnIvM3VqUhyltkzC0rm0Zjc/view?usp=drivesdk)
 * [Question 1](https://github.com/DeepthiTabithaBennet/DBMS/blob/main/Question_1.txt)
 * [Question 2](https://github.com/DeepthiTabithaBennet/DBMS/blob/main/Question_2.txt)
 * [Question 3](https://github.com/DeepthiTabithaBennet/DBMS/blob/main/Question_3.txt)
